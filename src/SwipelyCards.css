@@ -13,7 +13,7 @@
 .swipelyCards__container {
   display: flex;
   justify-content: center;
-  margin-top: 10vh;
+  margin-top: 4vh;
 }
 .swipe {
   position: absolute;
