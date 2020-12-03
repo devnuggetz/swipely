@@ -1,8 +1,43 @@
-import React from "react";
-import "./swipelyCards.css";
+import React, { useState } from "react";
+import TinderCard from "react-tinder-card";
+import "./SwipelyCards.css";
 
 function SwipelyCards() {
-  return <div className="swipelyCards"></div>;
+  const [people, setPeople] = useState([
+    {
+      name: "Drake",
+      url: "https://i.cdn.newsbytesapp.com/images/l204_29551604502901.jpg",
+    },
+  ]);
+  const swiped = (direction, nameToDelete) => {
+    console.log("removing " + nameToDelete);
+    // setLastDirection(direction);
+  };
+  const outOfFrame = (name) => {
+    console.log(name + "left the screne");
+  };
+  return (
+    <div className="swipelyCards">
+      <div className="swipelyCards__container">
+        {people.map((person) => (
+          <TinderCard
+            className="swipe"
+            key={person.name}
+            preventSwipe={["up", "down"]}
+            onSwipe={(dir) => swiped(dir, person.name)}
+            onCardLeftScreen={() => outOfFrame(person.name)}
+          >
+            <div
+              style={{ backgroundImage: `url(${person.url})` }}
+              className="card"
+            >
+              <h3>{person.name}</h3>
+            </div>
+          </TinderCard>
+        ))}
+      </div>
+    </div>
+  );
 }
 
 export default SwipelyCards;
