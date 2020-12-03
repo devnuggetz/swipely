@@ -1,14 +1,20 @@
-import React, { useState } from "react";
+import Axios from "axios";
+import React, { useState, useEffect } from "react";
 import TinderCard from "react-tinder-card";
 import "./SwipelyCards.css";
-
+import axios from "./axios";
 function SwipelyCards() {
-  const [people, setPeople] = useState([
-    {
-      name: "Drake",
-      url: "https://i.cdn.newsbytesapp.com/images/l204_29551604502901.jpg",
-    },
-  ]);
+  const [people, setPeople] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const request = await axios.get("/swipely/cards");
+      setPeople(request.data);
+      console.log(request);
+    }
+    fetchData();
+  }, []);
+
   const swiped = (direction, nameToDelete) => {
     console.log("removing " + nameToDelete);
     // setLastDirection(direction);
@@ -28,7 +34,7 @@ function SwipelyCards() {
             onCardLeftScreen={() => outOfFrame(person.name)}
           >
             <div
-              style={{ backgroundImage: `url(${person.url})` }}
+              style={{ backgroundImage: `url(${person.imageUrl})` }}
               className="card"
             >
               <h3>{person.name}</h3>
