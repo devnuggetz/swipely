@@ -1,3 +1,6 @@
+# This is an ongoing project to clone tinder with added features. The website is live with minimal functionalities and UI. 
+--
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
